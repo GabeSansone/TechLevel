@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* --- Reset e Global --- */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    color: #030330;
+    font-weight: 200;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    /* Animação de entrada do corpo todo */
+    animation: slideInUpFade 0.8s ease-out forwards;
+}
+
+/* --- Wallpaper Animado (Fundo) --- */
+.box-wallpaper {
+    position: absolute;
+    z-index: -1;
+    border-radius: 20px;
+    background-color: #030330;
+}
+
+.box-wallpaper:nth-of-type(1) {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 5%;
+    filter: blur(15px);
+    opacity: 0.3;
+}
+
+.box-wallpaper:nth-of-type(2) {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 10%;
+    filter: blur(8px);
+    opacity: 0.2;
+}
+
+.box-wallpaper:nth-of-type(3) {
+    width: 250px;
+    height: 250px;
+    bottom: -50px;
+    left: 15%;
+    filter: blur(2px);
+    opacity: 0.15;
+}
+
+.box-wallpaper:nth-of-type(4) {
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    right: 20%;
+    filter: blur(10px);
+    opacity: 0.2;
+}
+
+/* --- Tipografia --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    color: #030330;
+}
+
+figure {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* --- Formulário --- */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #030330;
+    padding: 60px 100px;
+    /* Ajustado para melhor respiro */
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+/* --- Campos de Dados (Floating Labels) --- */
+.col-dados {
+    position: relative;
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #030330;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #030330;
+}
+
+label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    pointer-events: none;
+    transition: 0.3s ease all;
+}
+
+/* Animação do label ao focar no input */
+input:focus+label,
+input:not(:placeholder-shown)+label {
+    animation: aumentar 0.2s ease-out forwards;
+    color: #030330;
+    font-weight: 500;
+}
+
+span {
+    display: block;
+}
+
+/* --- Botões e Links --- */
+form>a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+a:hover {
+    text-decoration: underline solid #030330;
+}
+
+button[type="submit"] {
+    background-color: #030330;
+    padding: 12px 35px;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid #030330;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.5s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: transparent;
+    color: #030330;
+}
+
+/* --- Keyframes --- */
+@keyframes aumentar {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        transform: scale(0.9) translateY(-35px) translateX(0px);
+    }
+}
+
+@keyframes slideInUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

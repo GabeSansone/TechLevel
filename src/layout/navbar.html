@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavBar TechLevel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* NAVBAR ESTRUTURA */
+        .navbar-header {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            /* Centraliza tudo verticalmente */
+            justify-content: space-between;
+            padding: 0 5%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.4s ease;
+            background-color: transparent;
+            z-index: 1000;
+            height: 100px;
+            /* Altura inicial grande */
+        }
+
+        /* LOGO */
+        .navbar-header figure {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-header figure img {
+            width: 70px;
+            transition: all 0.4s ease;
+            display: block;
+        }
+
+        /* LINKS */
+        .navbar-header ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar-header ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        /* BOTÃO LOGIN */
+        .btn-login {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #030330;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 800;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .btn-login:hover {
+            background-color: rgb(54, 54, 54);
+        }
+
+        .navbar-fixed>div>.btn-login:hover {
+            background-color: transparent;
+            border: 1px solid black;
+            color: black;
+        }
+
+        .navbar-header.navbar-fixed {
+            background-color: rgb(255, 255, 255) !important;
+            border-bottom: 2px solid rgb(203, 203, 203);
+            height: 70px !important;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .navbar-fixed>ul>li>a {
+            color: black;
+        }
+
+        .navbar-header.navbar-fixed figure img {
+            width: 50px !important;
+        }
+
+        .navbar-header.navbar-fixed .btn-login {
+            padding: 8px 20px !important;
+            font-size: 13px;
+        }
+
+        .navbar-fixed>figure>a>img {
+            filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(183deg) brightness(0%) contrast(101%);
+            ;
+        }
+
+        .navbar-header>ul>li>a:hover {
+            text-decoration: underline solid rgb(255, 255, 255);
+        }
+
+        .navbar-fixed>ul>li>a:hover {
+            text-decoration: underline solid black;
+        }
+
+        /* Estilo da caixinha do usuário (Dropdown) */
+        .user-menu {
+            display: none;
+            /* Escondido por padrão */
+            position: absolute;
+            top: 80px;
+            /* Ajuste conforme a altura da sua navbar */
+            right: 5%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1001;
+            border: 1px solid #ddd;
+            color: #333;
+            animation: logout 0.3s ease 1 forwards;
+        }
+
+        @keyframes logout {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .user-menu p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+            word-break: break-all;
+            /* Para o e-mail não vazar da div */
+        }
+
+        .btn-logout {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: "Poppins", sans-serif;
+            transition: 0.3s;
+        }
+
+        .btn-logout:hover {
+            background-color: #cc0000;
+        }
+
+        /* Classe para mostrar a div */
+        .show {
+            display: block !important;
+        }
+
+        #menuNome {
+            color: #030330;
+            text-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header class="navbar-header">
+        <figure>
+            <a href="./index.html">
+                <img src="./src/assets/techlevel logo white.png" alt="techlevel">
+            </a>
+        </figure>
+
+        <ul>
+            <li><a href="#section-about">Sobre Nós</a></li>
+            <li><a href="#section-workers">Serviços</a></li>
+            <li><a href="#section-hostinger">Hostinger</a></li>
+            <li><a href="mailto:techlevel@gmail.com?subject=Contratar serviços(bronze,prata,ouro)">Contate</a>
+            </li>
+        </ul>
+
+        <div style="position: relative;"> <a href="./src/pages/login.html" class="btn-login" id="link-login">LOGIN</a>
+
+            <div id="userMenu" class="user-menu">
+                <h4 id="menuNome">Usuário</h4>
+                <p id="menuEmail">email@exemplo.com</p>
+                <button class="btn-logout" onclick="logout()">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <script>
+    </script>
+</body>
+
+</html>

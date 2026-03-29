@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TechLevel</title>
+    <link rel="stylesheet" href="/src/css/login.css">
+    <link rel="shortcut icon" href="/src/assets/techlevel logo.png" type="image/x-icon">
+</head>
+<style>
+    @keyframes visivel {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .visible-card {
+        opacity: 1;
+        animation: visivel 1s ease 1 forwards;
+    }
+
+    .invisivel {
+        display: none !important;
+        opacity: 0;
+        animation: visivel 1s ease 1 forwards;
+    }
+</style>
+
+<body>
+    <div class="box-wallpaper"></div>
+    <div class="box-wallpaper"></div>
+    <div class="box-wallpaper"></div>
+    <div class="box-wallpaper"></div>
+
+    <header>
+        <figure>
+            <img src="/src/assets/techlevel logo.png" alt="techlevel" style="width: 100px">
+            <h1>TECHLEVEL</h1>
+        </figure>
+    </header>
+
+    <main>
+        <form action="/index.html" method="get" id="meuFormulario" class="visible-card">
+            <legend>Bem-vindo(a) de volta!</legend>
+
+            <div class="col-dados">
+                <input type="text" id="name" placeholder=" ">
+                <label for="name">Nome:</label>
+                <span></span>
+            </div>
+
+            <div class="col-dados">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Email:</label>
+                <span></span>
+            </div>
+
+            <div class="col-dados">
+                <input type="password" id="password" placeholder=" " required>
+                <label for="password">Senha:</label>
+                <span></span>
+            </div>
+
+            <a id="createLogin" onclick="createLogin()">Ainda não tem conta?</a>
+            <button type="submit">LOGIN</button>
+            <a href="/">Esqueceu a senha?</a>
+
+
+
+        </form>
+        <form action="/index.html" class="invisivel" id="MyForm" method="get">
+            <legend>Cadastre-se</legend>
+            <div class="col-dados">
+                <input type="text" id="name-2" placeholder=" ">
+                <label for="name">Nome:</label>
+                <span></span>
+            </div>
+
+            <div class="col-dados">
+                <input type="email" id="email-2" placeholder=" " required>
+                <label for="email">Email:</label>
+                <span></span>
+            </div>
+
+            <div class="col-dados">
+                <input type="password" id="password-2" placeholder=" " required>
+                <label for="password" id="password">Senha:</label>
+                <span></span>
+            </div>
+
+            <a onclick="back()">Voltar para o login</a>
+            <button type="submit" id="cadastro">Cadastrar</button>
+        </form>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('MyForm');
+
+            form.addEventListener('submit', function (event) {
+                // Pegando os elementos do formulário de LOGIN
+                const nomeInput = document.getElementById('name-2');
+                const emailInput = document.getElementById('email-2');
+                const passwordInput = document.getElementById('password-2'); // ID correto do primeiro form
+
+                const nome = nomeInput.value;
+                const email = emailInput.value;
+                const senha = passwordInput.value;
+
+                // VALIDAÇÃO: Se a senha for menor que 8, trava tudo
+                if (senha.length < 8) {
+                    event.preventDefault(); // Impede o navegador de ir para o action="/index.html"
+                    alert("A senha deve ter pelo menos 8 caracteres.");
+                    return; // Para a execução aqui
+                }
+
+                // Se chegou aqui, a senha é válida. Salvamos os dados:
+                localStorage.setItem('usuario_nome', nome);
+                localStorage.setItem('usuario_email', email);
+
+                // O navegador seguirá para o index.html automaticamente agora
+            });
+        });
+    </script>
+
+    <script src="/src/js/login.js"></script>
+</body>
+
+</html>

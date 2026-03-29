@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicial | TechLevel</title>
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="shortcut icon" href="./src/assets/techlevel logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header id="nav-bar"></header>
+
+    <div id="divisora">
+        <section id="section-about" data-animation="section-visible">
+            <h1>Sobre nossa Empresa</h1>
+            <p>
+                A <span>TechLevel</span> nasceu para solucionar um dos maiores gargalos do mercado de tecnologia: a
+                incerteza quanto aos
+                prazos de entrega. Entendemos que a agilidade é vital para o seu negócio; por isso, otimizamos nossos
+                processos para entregar sites profissionais e complexos em até duas semanas — reduzindo drasticamente o
+                padrão de mercado, que costuma chegar a dois meses. Mesmo em projetos de alta escala, garantimos a
+                conclusão
+                em apenas 30 dias.
+                Nosso diferencial reside na transparência total: oferecemos o acompanhamento do desenvolvimento em tempo
+                real via streaming, permitindo feedbacks precisos e um envolvimento profundo do cliente no projeto. Para
+                planos superiores, disponibilizamos a Call-Dev, um canal direto de comunicação com o desenvolvedor
+                responsável. Prezamos por um ambiente de colaboração mútua e informamos que, para manter a produtividade
+                e o
+                bem-estar de nossa equipe, todas as interações devem seguir nossos protocolos de ética e respeito
+                profissional.
+            </p>
+        </section>
+        <section id="section-workers" data-animation="section-visible">
+            <h1>Serviços Oferecidos:</h1>
+            <div id="cards-col">
+                <div class="card-work-2">
+                    <h1>Bronze</h1>
+                    <p>&dollar;209 <span>-</span> 875</p>
+                    <ul>
+                        <li>Acompanhamento em tempo real</li>
+                        <li>Hospedagem qualificada</li>
+                        <li><span>1° Manutenção grátis</span></li>
+                    </ul>
+                </div>
+                <div class="card-work-1">
+                    <h1>Prata</h1>
+                    <p>&dollar;475 <span>-</span> 2000</p>
+                    <ul>
+                        <li>Acompanhamento em tempo real</li>
+                        <li>Hospedagem qualificada</li>
+                        <li><span>Call-Dev</span></li>
+                        <li>Desconto de 20% na Hospedagem anual</li>
+
+                    </ul>
+                </div>
+                <div class="card-work-2">
+                    <h1>Ouro</h1>
+                    <p>&dollar; 3800 <span>-</span> 9500</p>
+                    <ul>
+                        <li><span>Tudo das opções anteriores</span></li>
+                        <li>Desconto de 50% na Hospedagem anual</li>
+                        <li>1 ano de manutenção com 70% de Desconto</li>
+                        <li>Monster Kit (kit periféricos da Corsair)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="section-hostinger" data-animation="section-visible">
+            <figure>
+                <a href="https://www.hostinger.com/br" target="_blank"><img src="./src/assets/hostinger white.png"
+                        alt="hostinger" style="width: 90px;"></a>
+                <h2>HOSTINGER</h2>
+            </figure>
+
+            <p>
+                A  <span>Hostinger</span>  é uma empresa líder global em tecnologia de hospedagem de sites, fundada em
+                2004 na
+                Lituânia. Com a missão de levar o sucesso a todos que estão online, a empresa oferece soluções rápidas,
+                seguras e acessíveis, como hospedagem Cloud, VPS e um Criador de Sites com Inteligência Artificial.
+                Hoje, a Hostinger atende milhões de usuários em todo o mundo, sendo reconhecida por sua infraestrutura
+                de alta performance e suporte ao cliente de excelência.
+            </p>
+        </section>
+        <footer id="section-contact" data-animation="section-visible">
+            <a href="https://www.hostinger.com/br">
+                <h1 class="title-contact">"Seu sucesso a um byte de distância"</h1>
+            </a>
+
+            <address>
+                <p>techlevel@gmail.com</p>
+            </address>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Carrega a Navbar
+        fetch('/src/layout/navbar.html')
+            .then(res => res.text())
+            .then(data => {
+                // Insere o HTML da navbar na div
+                document.querySelector('#nav-bar').innerHTML = data;
+
+                // --- AQUI COMEÇA A LÓGICA DO LOGIN (SÓ RODA DEPOIS QUE A NAV CARREGOU) ---
+
+                const linkLogin = document.getElementById('link-login');
+                const userMenu = document.getElementById('userMenu');
+                const menuNome = document.getElementById('menuNome');
+                const menuEmail = document.getElementById('menuEmail');
+
+                const nomeSalvo = localStorage.getItem('usuario_nome');
+                const emailSalvo = localStorage.getItem('usuario_email');
+
+                // Se o usuário estiver logado, altera o botão
+                if (nomeSalvo && linkLogin) {
+                    linkLogin.innerText = `OLÁ, ${nomeSalvo.toUpperCase().replace(",", " ").split(" ")[0]}`;
+                    linkLogin.href = "javascript:void(0)"; // Evita redirecionar
+
+                    if (menuNome) menuNome.innerText = nomeSalvo.replace(",", " ").split(" ")[0];
+                    if (menuEmail) menuEmail.innerText = emailSalvo || "Sem Email";
+                }
+
+                // Evento de clique para abrir/fechar a div
+                linkLogin.addEventListener('click', (e) => {
+                    if (nomeSalvo) {
+                        e.preventDefault();
+                        userMenu.classList.toggle('show');
+                    }
+                });
+
+                // Lógica do Scroll que você já tinha
+                const navbarElement = document.querySelector('.navbar-header');
+                if (navbarElement) {
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 50) {
+                            navbarElement.classList.add('navbar-fixed');
+                        } else {
+                            navbarElement.classList.remove('navbar-fixed');
+                        }
+                    });
+                }
+            });
+
+        // Esta função fica fora do fetch para ser global e o botão 'Sair' conseguir achá-la
+        function logout() {
+            localStorage.clear();
+            window.location.reload();
+        }
+
+        // Fecha o menu se clicar fora
+        window.addEventListener('click', (e) => {
+            const userMenu = document.getElementById('userMenu');
+            const linkLogin = document.getElementById('link-login');
+            if (userMenu && !linkLogin.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('show');
+            }
+        });
+    </script>
+    <script src="/src/js/index.js"></script>
+
+</body>
+
+</html>
